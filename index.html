@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="SubjectList">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Digital Library</title>
+	<link rel="stylesheet" type="text/css" href="./CSS/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+	<style type="text/css">
+		html { overflow-x: hidden; }
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="app.js"></script>
+</head>
+
+<body ng-controller="myCtrl">
+	<div class=header>
+		<div class="name">
+			<h1>Subject </h1>
+		</div>
+		<div class="navid">
+			<ul>
+				<li><a href="#">About</a></li>
+				<li><a href="#">contact</a></li>
+				<li><a href="#">other</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<center>
+		<section id="secid">
+			<div class="searc">
+				<input type="search" ng-model="search" name="search" placeholder=" search subjects">
+				<button class="buton">Search</button>
+			</div>
+		</section>
+	</center>
+
+	<!-- cards -->
+	<!-- {{subjects[0].subjectname}} -->
+	<div ng-repeat="subject in subjects | filter:search">
+		<center>
+			<div class="box">
+				<h1>{{subject.subjectname}}</h1>
+			</div>
+		</center>
+
+		<div class="card-deck" style="margin-left: 50px; margin-top:40px; float: center;">
+			<div class="card border-success mb-3" ng-repeat="chapter in subject.chapters | filter:search" style="max-width: 18rem;">
+				<div class="card-header">{{chapter.chaptername}}</div>
+				<div class="card-body text-success">
+					<ul ng-repeat="topic in chapter.topics | filter:search">
+						<li>{{topic.name}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<hr />
+
+	</div>
+
+
+	<footer class="foot">
+	</footer>
+</body>
+
+</html>
